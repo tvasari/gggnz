@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'tachyons';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <div className='h-100'>
     <App />
-  </React.StrictMode>,
+  </div>,
   document.getElementById('root')
 );
 
