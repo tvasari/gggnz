@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/gggnz/static/css/main.36a1c5c2.chunk.css",
+    "main.js": "/gggnz/static/js/main.b8897940.chunk.js",
+    "main.js.map": "/gggnz/static/js/main.b8897940.chunk.js.map",
+    "runtime-main.js": "/gggnz/static/js/runtime-main.8b86a174.js",
+    "runtime-main.js.map": "/gggnz/static/js/runtime-main.8b86a174.js.map",
+    "static/css/2.66b7f74f.chunk.css": "/gggnz/static/css/2.66b7f74f.chunk.css",
+    "static/js/2.96cf8688.chunk.js": "/gggnz/static/js/2.96cf8688.chunk.js",
+    "static/js/2.96cf8688.chunk.js.map": "/gggnz/static/js/2.96cf8688.chunk.js.map",
+    "index.html": "/gggnz/index.html",
+    "precache-manifest.685239419e1284cfc9cad44395e25e06.js": "/gggnz/precache-manifest.685239419e1284cfc9cad44395e25e06.js",
+    "service-worker.js": "/gggnz/service-worker.js",
+    "static/css/2.66b7f74f.chunk.css.map": "/gggnz/static/css/2.66b7f74f.chunk.css.map",
+    "static/css/main.36a1c5c2.chunk.css.map": "/gggnz/static/css/main.36a1c5c2.chunk.css.map",
+    "static/js/2.96cf8688.chunk.js.LICENSE.txt": "/gggnz/static/js/2.96cf8688.chunk.js.LICENSE.txt",
+    "static/media/facade.jpg": "/gggnz/static/media/facade.03a1efe3.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8b86a174.js",
+    "static/css/2.66b7f74f.chunk.css",
+    "static/js/2.96cf8688.chunk.js",
+    "static/css/main.36a1c5c2.chunk.css",
+    "static/js/main.b8897940.chunk.js"
+  ]
+}
