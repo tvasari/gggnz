@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/gggnz/static/css/main.ee5393a2.chunk.css",
-    "main.js": "/gggnz/static/js/main.6e89fb17.chunk.js",
-    "main.js.map": "/gggnz/static/js/main.6e89fb17.chunk.js.map",
+    "main.css": "/gggnz/static/css/main.b61ad54b.chunk.css",
+    "main.js": "/gggnz/static/js/main.eecf33cd.chunk.js",
+    "main.js.map": "/gggnz/static/js/main.eecf33cd.chunk.js.map",
     "runtime-main.js": "/gggnz/static/js/runtime-main.8b86a174.js",
     "runtime-main.js.map": "/gggnz/static/js/runtime-main.8b86a174.js.map",
     "static/css/2.66b7f74f.chunk.css": "/gggnz/static/css/2.66b7f74f.chunk.css",
-    "static/js/2.044c3e7b.chunk.js": "/gggnz/static/js/2.044c3e7b.chunk.js",
-    "static/js/2.044c3e7b.chunk.js.map": "/gggnz/static/js/2.044c3e7b.chunk.js.map",
+    "static/js/2.df21906a.chunk.js": "/gggnz/static/js/2.df21906a.chunk.js",
+    "static/js/2.df21906a.chunk.js.map": "/gggnz/static/js/2.df21906a.chunk.js.map",
     "index.html": "/gggnz/index.html",
-    "precache-manifest.147831c19b7f9ebb881413b0669eb2ce.js": "/gggnz/precache-manifest.147831c19b7f9ebb881413b0669eb2ce.js",
+    "precache-manifest.225b3b190017fc8df200b07b9d405961.js": "/gggnz/precache-manifest.225b3b190017fc8df200b07b9d405961.js",
     "service-worker.js": "/gggnz/service-worker.js",
     "static/css/2.66b7f74f.chunk.css.map": "/gggnz/static/css/2.66b7f74f.chunk.css.map",
-    "static/css/main.ee5393a2.chunk.css.map": "/gggnz/static/css/main.ee5393a2.chunk.css.map",
-    "static/js/2.044c3e7b.chunk.js.LICENSE.txt": "/gggnz/static/js/2.044c3e7b.chunk.js.LICENSE.txt",
-    "static/media/africa1.jpg": "/gggnz/static/media/africa1.03bc6d39.jpg",
-    "static/media/dipinto.jpg": "/gggnz/static/media/dipinto.0235b35d.jpg"
+    "static/css/main.b61ad54b.chunk.css.map": "/gggnz/static/css/main.b61ad54b.chunk.css.map",
+    "static/js/2.df21906a.chunk.js.LICENSE.txt": "/gggnz/static/js/2.df21906a.chunk.js.LICENSE.txt",
+    "static/media/5.jpg": "/gggnz/static/media/5.2046108f.jpg",
+    "static/media/africa1.jpg": "/gggnz/static/media/africa1.03bc6d39.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.8b86a174.js",
     "static/css/2.66b7f74f.chunk.css",
-    "static/js/2.044c3e7b.chunk.js",
-    "static/css/main.ee5393a2.chunk.css",
-    "static/js/main.6e89fb17.chunk.js"
+    "static/js/2.df21906a.chunk.js",
+    "static/css/main.b61ad54b.chunk.css",
+    "static/js/main.eecf33cd.chunk.js"
   ]
 }
