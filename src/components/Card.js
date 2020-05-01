@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Card = ( {foto} ) => {
+const Card = ( {photo} ) => {
 	return(
-          <div className='pa3'>
-            <img src={foto} alt='' draggable="false"/>
+          <div>
+            <img src={photo} alt='' draggable="false"/>
           </div>
 	);
 }
