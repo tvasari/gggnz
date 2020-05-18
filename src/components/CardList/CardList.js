@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
-import Card from './Card.js';
-import Headers from './Headers.js'
+import Card from '../Card/Card.js';
+import Headers from '../Headers/Headers.js'
 
 
 class CardList extends Component {
@@ -93,7 +93,7 @@ class CardList extends Component {
             controlledPosition={this.props.controlledPosition} 
             onDrag={this.props.onControlledDrag}
             onStop={this.updateThumbs} >
-            <div className='inner absolute w-100 h-100' style={{top: '-1170px', left: '-290px'}}>
+            <div className='inner absolute w-100 h-100' style={{top: '-1170px', left: '140px'}}>
               {
                 photos.map((photo, i) => {
                   if (i === 17) {

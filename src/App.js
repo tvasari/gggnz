@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Navbar from './components/Navbar.js';
-import CardList from './components/CardList.js';
+import Navbar from './components/Navbar/Navbar.js';
+import CardList from './components/CardList/CardList.js';
 
 const N = Math.floor(Math.random() * 22);
 
