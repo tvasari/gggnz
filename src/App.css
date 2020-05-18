@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+div.App {
+  height: max-content;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -51,6 +55,7 @@ img.bg {
   top: 0;
   left: 0;
   z-index: -1;
+  opacity: 0.3;
 }
 
 @media screen and (max-width: 1024px) { /* Specific to this particular image */

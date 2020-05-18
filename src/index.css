@@ -1,6 +1,6 @@
-#root, html, body {
+#root, html, body, div.primediv {
   margin: 0; 
-  height: 100%;
+  height: max-content;
   font-family: 'Montserrat', sans-serif;
 }
 

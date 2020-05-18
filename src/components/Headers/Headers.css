@@ -1,0 +1,12 @@
+.nome {
+	font-size: 4.2vw;
+}
+
+.artista {
+	font-size: 1.6vw;
+}
+
+div.titoli {
+	position: absolute;
+	z-index: 100;
+}
