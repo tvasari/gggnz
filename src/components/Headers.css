@@ -6,6 +6,7 @@
 	font-size: 1.6vw;
 }
 
-/*.titoli {
-	padding-top: 14vw;
-}*/
+div.titoli {
+	position: absolute;
+	z-index: 100;
+}
