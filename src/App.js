@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar.js';
-import CardList from './components/CardList/CardList.js';
+import Homepage from './components/Homepage/Homepage.js';
+import Works from './components/Works/Works.js';
 
 const N = Math.floor(Math.random() * 22);
 
@@ -10,19 +11,27 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
+      route: 'home',
       sfondi: [],
-      photos: [],
-      photoList: [],
-      controlledPosition: {
-        x: 0, y: 0
-      }
+      initialWorksPhotos: [],
+      worksPhotos: [],
+      initialWorksList: [],
+      worksList: [],
+      initialPhotoList: [],
+      photoList: []
     }
   }
 
-  onControlledDrag = (e, position) => {
-    const {x, y} = position;
-    this.setState({controlledPosition: {x, y}});
-  };
+  onRouteChange = (route) => {
+    const initialWorksListState = JSON.parse(JSON.stringify(this.state.initialWorksList));
+    const initialPhotoListState = JSON.parse(JSON.stringify(this.state.initialPhotoList));    
+
+    if (this.state.route !== route) {
+      this.setState({route: route});
+      this.setState({worksList: initialWorksListState});
+      this.setState({photoList: initialPhotoListState});
+    }
+  }
 
   componentDidMount() {
 
@@ -44,9 +53,34 @@ class App extends Component {
             },
           );
         })
+      const initialPhotoPush = JSON.parse(JSON.stringify(photoPush))
+      this.setState({initialPhotoList: initialPhotoPush});
       this.setState({photoList: photoPush});
-      this.setState({photos: photos});
-    }) 
+    })
+
+    fetch('http://localhost:3001/workscards')
+    .then(response => response.json())
+    .then(works => {
+      const worksPush = [];
+        works.forEach((work, i) => {
+          worksPush.push(
+            {
+              key: work.column_row,
+              id: work.url,
+              card_id: work.card_id,
+              c: work.column_number,
+              r: work.row_number,
+              x: Math.floor(500 * work.column_number / 2.2),
+              y: Math.floor(600 * work.row_number / 2.2)
+            },
+          );
+        })
+      const initialWorksPush = JSON.parse(JSON.stringify(worksPush))
+      this.setState({initialWorksList: initialWorksPush});
+      this.setState({worksList: worksPush});
+      this.setState({worksPhotos: works});
+      this.setState({initialWorksPhotos: works});
+    })
 
     fetch('http://localhost:3001/sfondignz')
     .then(response => response.json())
@@ -59,30 +93,35 @@ class App extends Component {
   };
 
   render() {
-    const { controlledPosition, photos, sfondi, photoList } = this.state;
-    photos.sort((a, b) => {
-      return a.card_id - b.card_id;
-    })
-    photoList.sort((a, b) => {
-      return a.card_id - b.card_id;
+    const { worksPhotos, worksList, sfondi, photoList, route } = this.state;
+
+    const elemsToSort = [photoList, worksPhotos, worksList];
+    elemsToSort.forEach(elem => {
+      elem.sort((a, b) => {
+        return a.card_id - b.card_id;
+      })
     })
 
-
-    return !photos.length || !sfondi.length ?
+    return !photoList.length || !sfondi.length ?
       <h1>Loading</h1> :
       (
         <div className="App">
-          <img src={sfondi[N]} alt='' className='bg' />
-          <Navbar />
+          <img src={sfondi[N]} alt='' className='bg' id='bg' />
+          <Navbar onRouteChange={this.onRouteChange}/>
           <div id='showcase' className='absolute left-0 top-0 w-100 h-100 overflow-hidden'>
-            <CardList
-            photos={photos}
-            photoList={photoList}
-            controlledPosition={controlledPosition} 
-            onControlledDrag={this.onControlledDrag}
-            />
-          </div>
-          
+            { route === 'home' ?
+              <Homepage
+              photoList={photoList}
+              route={route}
+              /> :
+              <Works
+              initialWorksPhotos={this.state.initialWorksPhotos}
+              worksPhotos={worksPhotos}
+              worksList={worksList}
+              route={route}
+              />
+            }
+          </div>   
         </div>
       );
     }
