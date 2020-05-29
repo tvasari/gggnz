@@ -3,4 +3,10 @@ div.thumb {
 	padding: 50px;
 	display: flex;
 	align-items: flex-end;
+	cursor: move;
+	z-index: -1;
+}
+
+img.painting {
+	cursor: pointer;
 }

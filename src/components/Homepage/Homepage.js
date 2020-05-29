@@ -4,12 +4,12 @@ import Card from '../Card/Card.js';
 import Headers from '../Headers/Headers.js'
 
 
-class CardList extends Component {
+class Homepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: this.props.photos,
       photoList: this.props.photoList,
+      route: this.props.route
     }
   }
 
@@ -40,7 +40,7 @@ class CardList extends Component {
               photoList[i].y = parseInt(photoList[i].y) + max_rows * rowspace;
             }
           }
-          return { photoList };    
+          return photoList;    
         })
       }
       else if (photoList[row].r === counter && topOff > window.innerHeight + 50) {
@@ -51,7 +51,7 @@ class CardList extends Component {
               photoList[i].y = parseInt(photoList[i].y) - max_rows * rowspace;
             }
           }
-          return { photoList };
+          return photoList;
         })
       }
     }
@@ -69,7 +69,7 @@ class CardList extends Component {
               photoList[i].x = parseInt(photoList[i].x) + max_cols * colspace;
             }
           }
-          return { photoList };
+          return photoList;
         })
       }
       else if (photoList[col].c === col && leftOff > window.innerWidth + 900) {
@@ -80,35 +80,36 @@ class CardList extends Component {
               photoList[i].x = parseInt(photoList[i].x) - max_cols * colspace;
             }
           }
-          return { photoList };
+          return photoList;
         })
       }
     }
   }
 
   render() {
-    const { photos, photoList } = this.state;
+    const { photoList, route } = this.state;
     return (
-          <Draggable 
-            controlledPosition={this.props.controlledPosition} 
-            onDrag={this.props.onControlledDrag}
+          <Draggable
             onStop={this.updateThumbs} >
-            <div className='inner absolute w-100 h-100' style={{top: '-1170px', left: '140px'}}>
+            <div className='inner absolute w-100 h-100' style={{top: '-1170px', left: '-1290px'}}>
               {
-                photos.map((photo, i) => {
-                  if (i === 17) {
-                    return <div> 
-                        <Headers 
-                        x={photoList[i].x}
-                        y={photoList[i].y}/>
+                photoList.map((photo, i) => {
+                  if (photo.card_id === 18) {
+                    return <div key={'div' + i}> 
+                        <Headers
+                        key={'Headers' + i} 
+                        x={photo.x - 350}
+                        y={photo.y + 250}
+                        w='50%'/>
                         <Card
                         id={photo.url}
                         key={i}
                         photo={photo.url}
-                        c={photo.column_number}
-                        r={photo.row_number}
-                        x={photoList[i].x}
-                        y={photoList[i].y}
+                        route={route}
+                        c={photo.c}
+                        r={photo.r}
+                        x={photo.x}
+                        y={photo.y}
                         w='37%'/>
                       </div>
                   } else {
@@ -116,10 +117,11 @@ class CardList extends Component {
                       id={photo.url}
                       key={i}
                       photo={photo.url}
-                      c={photo.column_number}
-                      r={photo.row_number}
-                      x={photoList[i].x}
-                      y={photoList[i].y}
+                      route={route}
+                      c={photo.c}
+                      r={photo.r}
+                      x={photo.x}
+                      y={photo.y}
                       w='37%'/>
                   }
                 })
@@ -130,4 +132,4 @@ class CardList extends Component {
   }
 }
 
-export default CardList;
+export default Homepage;
