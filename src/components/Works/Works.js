@@ -164,7 +164,7 @@ class Works extends Component {
   }
 
   render() {
-    const { worksPhotos, worksList, setDragging, route } = this.state;
+    const { worksPhotos, worksList, setDragging } = this.state;
 
     return (
           <Fragment>
