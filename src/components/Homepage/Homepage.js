@@ -110,7 +110,7 @@ class Homepage extends Component {
                         r={photo.r}
                         x={photo.x}
                         y={photo.y}
-                        w='37%'/>
+                        w='37vw'/>
                       </div>
                   } else {
                     return <Card
@@ -122,7 +122,7 @@ class Homepage extends Component {
                       r={photo.r}
                       x={photo.x}
                       y={photo.y}
-                      w='37%'/>
+                      w='37vw'/>
                   }
                 })
               }   
