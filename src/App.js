@@ -35,7 +35,7 @@ class App extends Component {
 
   componentDidMount() {
 
-    fetch('https://localhost:3001/homecards')
+    fetch('https://polar-basin-66660.herokuapp.com/homecards')
     .then(response => response.json())
     .then(photos => {
       const photoPush = [];
@@ -57,9 +57,9 @@ class App extends Component {
       this.setState({initialPhotoList: initialPhotoPush});
       this.setState({photoList: photoPush});
     })
-    .catch(err => console.log('Error' + err))
+    .catch(err => console.log('Error: ' +err))
 
-    fetch('https://localhost:3001/workscards')
+    fetch('https://polar-basin-66660.herokuapp.com/workscards')
     .then(response => response.json())
     .then(works => {
       const worksPush = [];
@@ -82,9 +82,9 @@ class App extends Component {
       this.setState({worksPhotos: works});
       this.setState({initialWorksPhotos: works});
     })
-    .catch(err => console.log('Error' + err))
+    .catch(err => console.log('Error: ' + err))
 
-    fetch('https://localhost:3001/sfondignz')
+    fetch('https://polar-basin-66660.herokuapp.com/sfondignz')
     .then(response => response.json())
     .then(sfondiUrl => {
         const sfondiUrlArray = sfondiUrl.map((sfondo, i) => {
@@ -92,7 +92,7 @@ class App extends Component {
         })
         this.setState({sfondi: sfondiUrlArray});
     })
-    .catch(err => console.log('Error' + err))
+    .catch(err => console.log('Error: ' + err))
   };
 
   render() {

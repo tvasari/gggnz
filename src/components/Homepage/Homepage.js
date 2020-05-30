@@ -91,7 +91,7 @@ class Homepage extends Component {
     return (
           <Draggable
             onStop={this.updateThumbs} >
-            <div className='inner absolute w-100 h-100' style={{top: '-1170px', left: '-1290px'}}>
+            <div className='inner absolute h-100' style={{width: '100vw', top: '-1170px', left: '-1290px'}}>
               {
                 photoList.map((photo, i) => {
                   if (photo.card_id === 18) {
@@ -110,7 +110,7 @@ class Homepage extends Component {
                         r={photo.r}
                         x={photo.x}
                         y={photo.y}
-                        w='37vw'/>
+                        w='37%'/>
                       </div>
                   } else {
                     return <Card
@@ -122,7 +122,7 @@ class Homepage extends Component {
                       r={photo.r}
                       x={photo.x}
                       y={photo.y}
-                      w='37vw'/>
+                      w='37%'/>
                   }
                 })
               }   
