@@ -35,7 +35,7 @@ class App extends Component {
 
   componentDidMount() {
 
-    fetch('https://polar-basin-66660.herokuapp.com/homecards')
+    fetch('https://localhost:3001/homecards')
     .then(response => response.json())
     .then(photos => {
       const photoPush = [];
@@ -59,7 +59,7 @@ class App extends Component {
     })
     .catch(err => console.log('Error' + err))
 
-    fetch('https://polar-basin-66660.herokuapp.com/workscards')
+    fetch('https://localhost:3001/workscards')
     .then(response => response.json())
     .then(works => {
       const worksPush = [];
@@ -84,7 +84,7 @@ class App extends Component {
     })
     .catch(err => console.log('Error' + err))
 
-    fetch('https://polar-basin-66660.herokuapp.com/sfondignz')
+    fetch('https://localhost:3001/sfondignz')
     .then(response => response.json())
     .then(sfondiUrl => {
         const sfondiUrlArray = sfondiUrl.map((sfondo, i) => {
