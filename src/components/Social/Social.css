@@ -62,9 +62,13 @@
     text-align: center;
 }
 
-@media screen and (min-width: 30em) {
-    .ph5-ns {
-        padding-left: 4rem;
-        padding-right: 4rem;
+.social {
+    position: absolute;
+    right: 3%;
+}
+
+@media only screen and (max-width: 700px) {
+    .social {
+        right: 6%;
     }
 }

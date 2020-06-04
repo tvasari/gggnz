@@ -4,7 +4,11 @@ import Navbar from './components/Navbar/Navbar.js';
 import Homepage from './components/Homepage/Homepage.js';
 import Works from './components/Works/Works.js';
 
+const localhost = 'http://localhost:3001';
+const herokuhost = 'https://polar-basin-66660.herokuapp.com';
+
 const N = Math.floor(Math.random() * 22);
+
 
 class App extends Component {
 
@@ -35,7 +39,7 @@ class App extends Component {
 
   componentDidMount() {
 
-    fetch('https://polar-basin-66660.herokuapp.com/homecards')
+    fetch(`${herokuhost}/homecards`)
     .then(response => response.json())
     .then(photos => {
       const photoPush = [];
@@ -59,7 +63,7 @@ class App extends Component {
     })
     .catch(err => console.log('Error: ' + err))
 
-    fetch('https://polar-basin-66660.herokuapp.com/workscards')
+    fetch(`${herokuhost}/workscards`)
     .then(response => response.json())
     .then(works => {
       const worksPush = [];
@@ -84,7 +88,7 @@ class App extends Component {
     })
     .catch(err => console.log('Error: ' + err))
 
-    fetch('https://polar-basin-66660.herokuapp.com/sfondignz')
+    fetch(`${herokuhost}/sfondignz`)
     .then(response => response.json())
     .then(sfondiUrl => {
         const sfondiUrlArray = sfondiUrl.map((sfondo, i) => {

@@ -1,6 +1,6 @@
 div.thumb {
 	box-sizing: border-box;
-	padding: 50px 50px 100% 50px;
+	padding: 50px;
 	display: flex;
 	align-items: flex-end;
 	cursor: move;
@@ -23,7 +23,7 @@ img.homepainting {
 	padding: 100px;
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1250px) {
 	div.home {
 		width: 43%;
 	}
@@ -32,7 +32,7 @@ img.homepainting {
 	}
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1060px) {
 	div.home {
 		width: 53%;
 	}
@@ -41,7 +41,7 @@ img.homepainting {
 	}
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 880px) {
 	div.home {
 		width: 67%;
 	}
@@ -51,7 +51,7 @@ img.homepainting {
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 680px) {
 	div.home {
 		width: 83%;
 	}
@@ -60,12 +60,18 @@ img.homepainting {
 	}
 }
 
+@media only screen and (max-width: 500px) {
+	div.works {
+		width: 55%;
+	}
+}
+
 /* MOBILE SCREEN SIZE */
 @media only screen and (max-width: 375px) {
 	div.home {
-		width: 83%;
+		width: 99%;
 	}
 	div.works {
-		width: 48%;
+		width: 65%;
 	}
 }
