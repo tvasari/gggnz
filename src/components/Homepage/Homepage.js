@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
 import Card from '../Card/Card.js';
-import Headers from '../Headers/Headers.js'
+import Headers from '../Headers/Headers.js';
+import './Homepage.css';
 
 
 class Homepage extends Component {
@@ -9,8 +10,25 @@ class Homepage extends Component {
     super(props);
     this.state = {
       photoList: this.props.photoList,
-      route: this.props.route
+      route: this.props.route,
+      screenSizeIsMaj: true,
+      screenDiff: 0
     }
+  }
+
+  updateDimensions = () => {
+    window.innerWidth < 1150 ?
+    this.setState({screenSizeIsMaj: false}) :
+    this.setState({screenSizeIsMaj: true})
+  }
+
+  componentDidMount() {
+    this.setState({screenDiff: window.screen.availWidth - window.innerWidth});
+    window.addEventListener("resize", this.updateDimensions);
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("resize", this.updateDimensions);
   }
 
   updateThumbs = () => {
@@ -87,31 +105,34 @@ class Homepage extends Component {
   }
 
   render() {
-    const { photoList, route } = this.state;
+    const { photoList, route, screenDiff } = this.state;
+
     return (
           <Draggable
-            onStop={this.updateThumbs} >
-            <div className='inner absolute h-100' style={{width: '100vw', top: '-1170px', left: '-1290px'}}>
+            onStop={this.updateThumbs}>
+            <div 
+              className='homeinner inner absolute h-100' 
+              id='homeinner'
+              style={{left: `${-1400 - (screenDiff / 3.7)}px`, 
+              top: '-1285px'}}>
               {
                 photoList.map((photo, i) => {
                   if (photo.card_id === 18) {
-                    return <div key={'div' + i}> 
+                    return window.innerWidth > 1150 ?
+                      (<div key={'div' + i}> 
                         <Headers
                         key={'Headers' + i} 
-                        x={photo.x - 350}
+                        x={photo.x - 250}
+                        y={photo.y + 330}
+                        w='50%'/>
+                      </div>) :
+                      (<div key={'div' + i}> 
+                        <Headers
+                        key={'Headers' + i} 
+                        x={photo.x - 250}
                         y={photo.y + 250}
                         w='50%'/>
-                        <Card
-                        id={photo.url}
-                        key={i}
-                        photo={photo.url}
-                        route={route}
-                        c={photo.c}
-                        r={photo.r}
-                        x={photo.x}
-                        y={photo.y}
-                        w='37%'/>
-                      </div>
+                      </div>)
                   } else {
                     return <Card
                       id={photo.url}
@@ -122,7 +143,7 @@ class Homepage extends Component {
                       r={photo.r}
                       x={photo.x}
                       y={photo.y}
-                      w='37%'/>
+                      />
                   }
                 })
               }   

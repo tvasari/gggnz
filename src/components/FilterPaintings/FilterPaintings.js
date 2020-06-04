@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-const FilterPaintings = ({ onInputChange, onButtonSubmit, x, y, w }) => {
+const FilterPaintings = ({ onInputChange, onButtonSubmit, x, y}) => {
+
 	return(
-		<div className='absolute' style={{left: `${x - 200}px`, top: `${y + 70}px`, width: `${w}`}}>
-			<p className='f4'>
+		<div className='absolute' style={{left: `${(x - 230)}px`, top: `${(y + 60)}px`, width: '35%'}}>
+			<p className='f4' style={{'fontSize': '1.3rem'}}>
 				{'Give it a try.'}
 			</p>
-			<div className='center'>
-				<div className='form center pa3 br3 shadow-5'>
-					<input type='text' className='f4 pa1 w-60 center' onChange={onInputChange}/>
-					<button className='pointer w-30 grow f4 link ph3 pv1 dib white bg-orange' onClick={onButtonSubmit}>
-					  Detect
-					</button>
-				</div>
-			</div>	
+			<div className='form center pa3 br3 shadow-5 block' style={{width: 'fit-content'}}>
+				<input type='text' className='f4 pa1 w8 center' onChange={onInputChange}/>
+				<button className='pointer w4 grow f4 link ph3 pv1 dib white bg-orange' style={{'fontSize': '1.3rem'}} onClick={onButtonSubmit}>
+				  Detect
+				</button>
+			</div>
 		</div>
 	);
 

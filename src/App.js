@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useLayoutEffect, useState, Fragment } from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar.js';
 import Homepage from './components/Homepage/Homepage.js';
@@ -57,7 +57,7 @@ class App extends Component {
       this.setState({initialPhotoList: initialPhotoPush});
       this.setState({photoList: photoPush});
     })
-    .catch(err => console.log('Error: ' +err))
+    .catch(err => console.log('Error: ' + err))
 
     fetch('https://polar-basin-66660.herokuapp.com/workscards')
     .then(response => response.json())
@@ -111,7 +111,7 @@ class App extends Component {
         <div className="App">
           <img src={sfondi[N]} alt='' className='bg' id='bg' />
           <Navbar onRouteChange={this.onRouteChange}/>
-          <div id='showcase' className='absolute left-0 top-0 w-100 h-100 overflow-hidden'>
+          <div id='showcase' className='absolute w-100 h-100 overflow-hidden'>
             { route === 'home' ?
               <Homepage
               photoList={photoList}

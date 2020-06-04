@@ -4,6 +4,8 @@ div.navbar {
 }
 
 p.navbar {
+	width: 15vw;
 	font-size: 1.3vw;
 	cursor: pointer;
+	padding-right: 5vw;
 }

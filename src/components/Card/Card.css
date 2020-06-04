@@ -1,12 +1,71 @@
 div.thumb {
 	box-sizing: border-box;
-	padding: 50px;
+	padding: 50px 50px 100% 50px;
 	display: flex;
 	align-items: flex-end;
 	cursor: move;
 	z-index: -1;
 }
 
+div.home {
+	width: 37%;
+}
+
+div.works {
+	width: 20%;
+}
+
 img.painting {
-	cursor: pointer;
+	width: 100%;
+}
+
+img.homepainting {
+	padding: 100px;
+}
+
+@media only screen and (max-width: 1200px) {
+	div.home {
+		width: 43%;
+	}
+	div.works {
+		width: 23%;
+	}
+}
+
+@media only screen and (max-width: 1000px) {
+	div.home {
+		width: 53%;
+	}
+	div.works {
+		width: 28%;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	div.home {
+		width: 67%;
+	}
+	div.works {
+		width: 36%;
+	}
+}
+
+
+@media only screen and (max-width: 600px) {
+	div.home {
+		width: 83%;
+	}
+	div.works {
+		width: 48%;
+	}
+}
+
+/* MOBILE SCREEN SIZE */
+@media only screen and (max-width: 375px) {
+	div.home {
+		width: 83%;
+	}
+	div.works {
+		width: 48%;
+	}
 }

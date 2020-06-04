@@ -4,12 +4,12 @@ import Card from '../Card/Card.js';
 import PopUp from '../PopUp/PopUp.js';
 import FilterPaintings from '../FilterPaintings/FilterPaintings.js';
 
-
 class Works extends Component {
   constructor(props) {
     super(props);
     this.state = {
       input: '',
+      route: this.props.route,
       initialWorksPhotos: this.props.initialWorksPhotos,
       worksPhotos: this.props.worksPhotos,
       worksList: this.props.worksList,
@@ -20,8 +20,25 @@ class Works extends Component {
       stopPosition: {
         x: 0, y: 0
       },
-      setDragging: false
+      setDragging: false,
+      screenSizeIsMaj: true,
+      screenDiff: 0
     }
+  }
+
+  updateDimensions = () => {
+    window.innerWidth < 1150 ?
+    this.setState({screenSizeIsMaj: false}) :
+    this.setState({screenSizeIsMaj: true})
+  }
+
+  componentDidMount() {
+    this.setState({screenDiff: window.screen.availWidth - window.innerWidth});
+    window.addEventListener("resize", this.updateDimensions)
+  }
+
+  componentWillUnmount() {
+    window.addEventListener("resize", this.updateDimensions)
   }
 
   openPopUp = (photo) => {
@@ -164,7 +181,7 @@ class Works extends Component {
   }
 
   render() {
-    const { worksPhotos, worksList, setDragging } = this.state;
+    const { worksPhotos, worksList, setDragging, route, screenDiff } = this.state;
 
     return (
           <Fragment>
@@ -177,17 +194,19 @@ class Works extends Component {
               onStart={this.onStartDrag}
               onStop={this.updateThumbs} >
               <div
-                className='inner absolute w-100 h-100' 
-                style={{top: '-400px', left: '-250px'}}>
+                className='worksinner inner absolute h-100'
+                style={{top: '-395px', left: `${-255 - (screenDiff / 2.2)}px`, width: '100vw'}}>
                 {
                   worksPhotos.map((work, i) => {
                     if (work.card_id === 27) {
-                      return <div key={'div' + i}> 
+                      return window.innerWidth > 1150 ? 
+                        (<div key={'div' + i}> 
                           <FilterPaintings
                           key={'searchField' + i}
                           x={worksList[i].x}
                           y={worksList[i].y}
                           w='30%'
+                          route={route}
                           onInputChange={this.onInputChange}
                           onButtonSubmit={this.onButtonSubmit}
                           />
@@ -195,24 +214,47 @@ class Works extends Component {
                           id={worksList[i].key}
                           key={i}
                           photo={work.url}
+                          route={route}
                           c={work.column_number}
                           r={work.row_number}
                           x={worksList[i].x}
                           y={worksList[i].y}
-                          w='20%'/>
-                        </div>
+                          />
+                        </div>) :
+                        (<div key={'div' + i}> 
+                          <FilterPaintings
+                          key={'searchField' + i}
+                          x={worksList[i].x + 60}
+                          y={worksList[i].y - 30}
+                          w='30%'
+                          route={route}
+                          onInputChange={this.onInputChange}
+                          onButtonSubmit={this.onButtonSubmit}
+                          />
+                          <Card
+                          id={worksList[i].key}
+                          key={i}
+                          photo={work.url}
+                          route={route}
+                          c={work.column_number}
+                          r={work.row_number}
+                          x={worksList[i].x}
+                          y={worksList[i].y}
+                          />
+                        </div>)
                     } else {
                       return <Card
                         id={worksList[i].key}
                         key={i}
                         photo={work.url}
+                        route={route}
                         openPopUp={this.openPopUp}
                         setDragging={setDragging}
                         c={work.column_number}
                         r={work.row_number}
                         x={worksList[i].x}
                         y={worksList[i].y}
-                        w='20%'/>
+                        />
                     }
                   })
                 }   
