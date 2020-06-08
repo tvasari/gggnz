@@ -202,7 +202,7 @@ class Works extends Component {
     let innerLeftOff = worksinner.getBoundingClientRect().left;
     document.getElementById("myTextField").focus({preventScroll:true});
     this.setState({isFocused: true});       
-    this.state.stopPosition.x // DEVE ARRIVARE A HOMEPAGE
+    //this.state.stopPosition.x // DEVE ARRIVARE A HOMEPAGE
   }
 
 
