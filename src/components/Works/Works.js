@@ -3,6 +3,7 @@ import Draggable from 'react-draggable';
 import Card from '../Card/Card.js';
 import PopUp from '../PopUp/PopUp.js';
 import FilterPaintings from '../FilterPaintings/FilterPaintings.js';
+import './Work.css'
 
 class Works extends Component {
   constructor(props) {
@@ -58,39 +59,45 @@ class Works extends Component {
   }
 
   onButtonSubmit = () => {
-    const newWorksPhotosList = this.state.initialWorksPhotos.filter(work => {
-      return work.color.toLowerCase()
-                       .includes(this.state.input.toLowerCase());
-    })
 
-    let counter = 0;
-
-    const displayWorksList = this.state.worksPhotos.map(work => {
-      counter++
-      if (counter === newWorksPhotosList.length) {
-        counter = 0;
-      }
-
-      if (newWorksPhotosList.length > 0) {
-        for (var i=0; i < newWorksPhotosList.length; i++) {
-          if (work !== newWorksPhotosList[i] && newWorksPhotosList.length !== 0) {
-            return newWorksPhotosList[counter];
-          } else if (newWorksPhotosList[i] === undefined) {
-            return this.state.worksPhotos.find(photo => photo.card_id === 27);
-          } else {
-            return work;
-          }
+    if (this.state.input === '') {
+      return null;
+    } else {
+      const matches = this.state.initialWorksPhotos.filter(work => {
+        if (work.color === null) {
+          return null;
+        } else {
+          return work.color.toLowerCase().includes(this.state.input.toLowerCase());
         }
-      } else {
-        return this.state.worksPhotos.find(photo => photo.card_id === 26)
-      }
-    })
+      })
 
-    displayWorksList.pop()
-    displayWorksList.pop()
-    displayWorksList.splice(25, 0, this.state.worksPhotos.find(photo => photo.card_id === 26))
-    displayWorksList.splice(26, 0, this.state.worksPhotos.find(photo => photo.card_id === 27))    
-    this.setState({worksPhotos: displayWorksList})
+      let counter = 0;
+      const display = this.state.worksPhotos.map(work => {
+        counter++
+        if (counter === matches.length) {
+          counter = 0;
+        }
+        if (matches.length > 0) {
+          for (var i=0; i < matches.length; i++) {
+            if (work !== matches[i]) {
+              return matches[counter];
+            } else {
+              return work;
+            }
+          }
+        } else {
+          return this.state.worksPhotos.find(photo => photo.card_id === 26)
+        }
+      })
+
+      console.log('display', display)
+      display.pop();
+      display.pop();
+      display.splice(25, 0, this.state.worksPhotos.find(photo => photo.card_id === 26))
+      display.splice(26, 0, this.state.worksPhotos.find(photo => photo.card_id === 27))
+
+      this.setState({worksPhotos: display})
+    }
   }
 
   updateThumbs = (e, position) => {

@@ -1,16 +1,15 @@
 /* The actual popup (appears on top) */
 .popuptext {
-  height: fit-content;
   visibility: hidden;
   background-color: transparent;
   color: #555;
-  text-align: center;
   border-radius: 6px;
   padding: 8px 0;
-  position: absolute;
+  position: relative;
   z-index: 15;
-  bottom: 9%;
-  left: 20%;
+  bottom: 92%;
+  width: fit-content;
+  margin: auto;
 }
 
 .ts-layer {
@@ -18,7 +17,7 @@
   height: 100%;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.8);
-  position: absolute;
+  position: relative;
   z-index: 14;
 }
 
@@ -35,10 +34,18 @@
 }
 
 #quadro {
-  height: 75vh;
-  max-width: 60vw; 
+  height: 75vh; 
 }
 
 #didascalia {
   margin-bottom: 0;
+}
+
+@media only screen and (max-width: 375px) {
+  .popuptext {
+    bottom: 85%;
+  }
+  #quadro {
+    height: 65vh;
+  }
 }

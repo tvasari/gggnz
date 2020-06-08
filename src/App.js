@@ -101,7 +101,7 @@ class App extends Component {
 
   render() {
     const { worksPhotos, worksList, sfondi, photoList, route } = this.state;
-
+    
     const elemsToSort = [photoList, worksPhotos, worksList];
     elemsToSort.forEach(elem => {
       elem.sort((a, b) => {

@@ -125,6 +125,16 @@ class Homepage extends Component {
                         x={photo.x - 250}
                         y={photo.y + 330}
                         w='50%'/>
+                        <Card
+                        id={photo.url}
+                        key={i}
+                        photo={photo.url}
+                        route={route}
+                        c={photo.c}
+                        r={photo.r}
+                        x={photo.x}
+                        y={photo.y}
+                        />
                       </div>) :
                       (<div key={'div' + i}> 
                         <Headers
@@ -132,6 +142,16 @@ class Homepage extends Component {
                         x={photo.x - 250}
                         y={photo.y + 250}
                         w='50%'/>
+                        <Card
+                        id={photo.url}
+                        key={i}
+                        photo={photo.url}
+                        route={route}
+                        c={photo.c}
+                        r={photo.r}
+                        x={photo.x}
+                        y={photo.y}
+                        />
                       </div>)
                   } else {
                     return <Card

@@ -4,3 +4,11 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+
+@media only screen and (max-width: 375px) {
+	.homeinner {
+		left: -1720px!important;
+		top: -1300px!important;
+
+	}
+}

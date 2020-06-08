@@ -18,14 +18,19 @@ p.navbar {
 	div.navbar {
 		height: 90px;
 	}
-	p.show {
-		visibility: hidden;
+	p.lang {
+		align-self: flex-start;
+		position: relative;
+		right: -20px;
 	}
 }
 
 @media only screen and (max-width: 375px) {
 	p.navbar {
 		font-size: 3vw;
+	}
+	div.navbar {
+		height: 60px;
 	}
 }
 

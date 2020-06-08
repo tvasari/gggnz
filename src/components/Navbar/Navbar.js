@@ -10,7 +10,7 @@ const Navbar = ( { onRouteChange } ) => {
 				<p className="navbar f6 link dim br1 mb2 dib black" href="#0" draggable="false" onClick={() => onRouteChange('works')}>WORKS</p>
 				<p className="navbar f6 link dim br1 mb2 dib black" href="#0" draggable="false">DATES</p>
 				<p className="navbar f6 link dim br1 mb2 dib black" href="#0" draggable="false">CONTACTS</p>
-				<p className="navbar f6 link dim br1 mb2 dib black show" href="#0" draggable="false">IT/EN</p>				
+				<p className="lang navbar f6 link dim br1 mb2 dib black show" href="#0" draggable="false">IT/EN</p>				
 				<Social />
 			</div>
 	);
