@@ -22,7 +22,8 @@ class App extends Component {
       initialWorksList: [],
       worksList: [],
       initialPhotoList: [],
-      photoList: []
+      photoList: [],
+      offSetPage: 0
     }
   }
 
