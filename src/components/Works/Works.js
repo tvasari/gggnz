@@ -196,10 +196,10 @@ class Works extends Component {
     let innerTopOff = worksinner.getBoundingClientRect().top;
     let innerLeftOff = worksinner.getBoundingClientRect().left;
     document.getElementById("myTextField").focus({preventScroll:true});       
-    this.setState({worksInnerPos: {
+    {/*this.setState({worksInnerPos: {
       top: innerTopOff - this.state.stopPosition.y,
       left: innerLeftOff - this.state.stopPosition.x
-    }})
+    }})*/}
   }
 
 
