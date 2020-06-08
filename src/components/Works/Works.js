@@ -21,6 +21,9 @@ class Works extends Component {
       stopPosition: {
         x: 0, y: 0
       },
+      worksInnerPos: {
+        top: -395, left: -255
+      },
       setDragging: false,
       screenSizeIsMaj: true,
       screenDiff: 0
@@ -59,9 +62,10 @@ class Works extends Component {
   }
 
   onButtonSubmit = () => {
+    let clone = this.state.initialWorksPhotos.slice(0)
 
     if (this.state.input === '') {
-      return null;
+      return this.setState({worksPhotos: this.state.initialWorksPhotos});
     } else {
       const matches = this.state.initialWorksPhotos.filter(work => {
         if (work.color === null) {
@@ -72,7 +76,7 @@ class Works extends Component {
       })
 
       let counter = 0;
-      const display = this.state.worksPhotos.map(work => {
+      const display = clone.map(work => {
         counter++
         if (counter === matches.length) {
           counter = 0;
@@ -86,17 +90,17 @@ class Works extends Component {
             }
           }
         } else {
-          return this.state.worksPhotos.find(photo => photo.card_id === 26)
+          return clone.find(photo => photo.card_id === 26)
         }
       })
-
-      console.log('display', display)
       display.pop();
       display.pop();
       display.splice(25, 0, this.state.worksPhotos.find(photo => photo.card_id === 26))
       display.splice(26, 0, this.state.worksPhotos.find(photo => photo.card_id === 27))
 
       this.setState({worksPhotos: display})
+
+      document.getElementById("myTextField").blur(); 
     }
   }
 
@@ -105,7 +109,7 @@ class Works extends Component {
     const {x, y} = position; 
     this.setState({stopPosition: {x, y}})
     if (this.state.startPosition.x !== this.state.stopPosition.x
-        ||
+          ||
         this.state.startPosition.y !== this.state.stopPosition.y) {
       this.setState({setDragging: true})
     } else {
@@ -187,27 +191,40 @@ class Works extends Component {
     }
   }
 
+  getFocus() {
+    var worksinner = document.getElementById('worksinner')
+    let innerTopOff = worksinner.getBoundingClientRect().top;
+    let innerLeftOff = worksinner.getBoundingClientRect().left;
+    document.getElementById("myTextField").focus({preventScroll:true});       
+    this.setState({worksInnerPos: {
+      top: innerTopOff - this.state.stopPosition.y,
+      left: innerLeftOff - this.state.stopPosition.x
+    }})
+  }
+
+
   render() {
-    const { worksPhotos, worksList, setDragging, route, screenDiff } = this.state;
+    const { worksPhotos, worksList, worksInnerPos, setDragging, route, screenDiff } = this.state;
 
     return (
           <Fragment>
             <PopUp 
-              card_id={this.state.card_id} 
-              openPopUp={this.openPopUp} 
-              photo={this.state.card_url}
-              setDragging={setDragging}/>
+            openPopUp={this.openPopUp} 
+            photo={this.state.card_url}
+            className='popup'/>
             <Draggable
               onStart={this.onStartDrag}
-              onStop={this.updateThumbs} >
+              onStop={this.updateThumbs}
+              cancel='popup'>
               <div
+                id='worksinner'
                 className='worksinner inner absolute h-100'
-                style={{top: '-395px', left: `${-255 - (screenDiff / 2.2)}px`, width: '100vw'}}>
+                style={{top: `${worksInnerPos.top}px`, left: `${worksInnerPos.left - (screenDiff / 2.2)}px`, width: '100vw'}}>
                 {
                   worksPhotos.map((work, i) => {
                     if (work.card_id === 27) {
                       return window.innerWidth > 1150 ? 
-                        (<div key={'div' + i}> 
+                        (<Fragment>
                           <FilterPaintings
                           key={'searchField' + i}
                           x={worksList[i].x}
@@ -216,6 +233,7 @@ class Works extends Component {
                           route={route}
                           onInputChange={this.onInputChange}
                           onButtonSubmit={this.onButtonSubmit}
+                          getFocus={this.getFocus}
                           />
                           <Card
                           id={worksList[i].key}
@@ -227,8 +245,8 @@ class Works extends Component {
                           x={worksList[i].x}
                           y={worksList[i].y}
                           />
-                        </div>) :
-                        (<div key={'div' + i}> 
+                        </Fragment>) :
+                        (<Fragment>
                           <FilterPaintings
                           key={'searchField' + i}
                           x={worksList[i].x + 60}
@@ -237,6 +255,7 @@ class Works extends Component {
                           route={route}
                           onInputChange={this.onInputChange}
                           onButtonSubmit={this.onButtonSubmit}
+                          getFocus={this.getFocus.bind(this)}
                           />
                           <Card
                           id={worksList[i].key}
@@ -248,7 +267,7 @@ class Works extends Component {
                           x={worksList[i].x}
                           y={worksList[i].y}
                           />
-                        </div>)
+                        </Fragment>)
                     } else {
                       return <Card
                         id={worksList[i].key}

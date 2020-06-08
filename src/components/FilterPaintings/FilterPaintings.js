@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function getFocus() {           
-  document.getElementById("myTextField").focus();
-}
-
-const FilterPaintings = ({ onInputChange, onButtonSubmit, x, y}) => {
+const FilterPaintings = ({ onInputChange, onButtonSubmit, getFocus, x, y}) => {
 
 	return(
 		<div className='absolute' style={{left: `${(x - 230)}px`, top: `${(y + 60)}px`, width: '35%'}}>

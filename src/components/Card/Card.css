@@ -75,3 +75,12 @@ img.homepainting {
 		width: 65%;
 	}
 }
+
+@media only screen and (max-width: 320px) {
+	div.home {
+		width: 135%;
+	}
+	div.works {
+		width: 75%;
+	}
+}
