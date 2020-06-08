@@ -26,7 +26,8 @@ class Works extends Component {
       },
       setDragging: false,
       screenSizeIsMaj: true,
-      screenDiff: 0
+      screenDiff: 0,
+      isFocused: false
     }
   }
 
@@ -195,7 +196,8 @@ class Works extends Component {
     var worksinner = document.getElementById('worksinner')
     let innerTopOff = worksinner.getBoundingClientRect().top;
     let innerLeftOff = worksinner.getBoundingClientRect().left;
-    document.getElementById("myTextField").focus({preventScroll:true});       
+    document.getElementById("myTextField").focus({preventScroll:true});
+    this.setState({isFocused: true});       
     {/*this.setState({worksInnerPos: {
       top: innerTopOff - this.state.stopPosition.y,
       left: innerLeftOff - this.state.stopPosition.x
@@ -205,7 +207,6 @@ class Works extends Component {
 
   render() {
     const { worksPhotos, worksList, worksInnerPos, setDragging, route, screenDiff } = this.state;
-
     return (
           <Fragment>
             <PopUp 
