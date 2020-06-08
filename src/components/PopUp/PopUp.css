@@ -44,9 +44,12 @@
 
 @media only screen and (max-width: 375px) {
   .popuptext {
-    bottom: 85%;
+    bottom: -15%;
   }
   #quadro {
     height: 65vh;
+  }
+  .ts-layer {
+    position: absolute;
   }
 }
