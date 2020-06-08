@@ -46,6 +46,7 @@
   .popuptext {
     position: fixed;
     bottom: 13%;
+    left: 14%;
   }
   #quadro {
     height: 65vh;

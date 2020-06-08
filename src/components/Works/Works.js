@@ -68,12 +68,16 @@ class Works extends Component {
     if (this.state.input === '') {
       return this.setState({worksPhotos: this.state.initialWorksPhotos});
     } else {
-      const matches = this.state.initialWorksPhotos.filter(work => {
+      let matches = this.state.initialWorksPhotos.filter(work => {
         if (work.color === null) {
           return null;
         } else {
           return work.color.toLowerCase().includes(this.state.input.toLowerCase());
         }
+      })
+
+      matches = matches.filter(match => {
+        return match.card_id !== 26 && match.card_id !== 27
       })
 
       let counter = 0;
