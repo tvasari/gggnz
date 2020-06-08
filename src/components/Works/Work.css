@@ -10,12 +10,6 @@
 	}
 }
 
-@media only screen and (max-width: 340px) {
-	.worksinner {
-		left: -728px!important;
-	}
-}
-
 @media only screen and (max-width: 320px) {
 	.worksinner {
 		left: -737px!important;

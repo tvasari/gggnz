@@ -14,8 +14,8 @@
 
 .ts-layer {
   visibility: hidden;
-  height: 100vh;
-  width: 100vw;
+  height: 200vh;
+  width: 200vw;
   background-color: rgba(255, 255, 255, 0.8);
   position: relative;
   z-index: 14;
@@ -45,7 +45,7 @@
 @media only screen and (max-width: 375px) {
   .popuptext {
     position: absolute;
-    bottom: -15%;
+    bottom: 13%;
   }
   #quadro {
     height: 65vh;
