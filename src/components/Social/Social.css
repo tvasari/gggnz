@@ -33,24 +33,33 @@
 }
 
 .social {
-    position: absolute;
-    right: 3%;
+    position: relative;
+    right: 5px;
     width: 2rem;
     height: 2rem;
     display: inline-block;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 650px) {
     .social {
-        right: 30px;
-        top: 40px;
+        right: 7.9%;
+        top: 17px;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .social {
+        right: 7%;
+        top: 13px;
+        width: 1.6rem;
+        height: 1.6rem;
     }
 }
 
 @media only screen and (max-width: 375px) {
     .social {
-        right: 18px;
-        top: 27px;
+        right: 6.7%;
+        top: 11px;
         width: 1.5rem;
         height: 1.5rem;
     }
