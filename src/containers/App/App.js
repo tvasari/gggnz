@@ -1,14 +1,12 @@
-import React, { Component, useLayoutEffect, useState, Fragment } from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import Navbar from './components/Navbar/Navbar.js';
-import Homepage from './components/Homepage/Homepage.js';
-import Works from './components/Works/Works.js';
+import Navbar from '../../components/Navbar/Navbar.js';
+import Homepage from '../Homepage/Homepage.js';
+import Works from '../Works/Works.js';
 
-const localhost = 'http://localhost:3001';
 const herokuhost = 'https://polar-basin-66660.herokuapp.com';
 
 const N = Math.floor(Math.random() * 22);
-
 
 class App extends Component {
 
@@ -16,6 +14,8 @@ class App extends Component {
     super()
     this.state = {
       route: 'home',
+      screenDiff: 0,
+      screenSizeIsMaj: true,
       sfondi: [],
       initialWorksPhotos: [],
       worksPhotos: [],
@@ -26,6 +26,88 @@ class App extends Component {
       offSetPage: 0
     }
   }
+
+  updateDimensions = () => {
+    window.innerWidth < 1150 ?
+    this.setState({screenSizeIsMaj: false}) :
+    this.setState({screenSizeIsMaj: true})
+  }
+
+
+  updateThumbs = (list, max_photos, max_rows, max_cols, rowspace, colspace, n1, n2, n3, n4) => {
+    const { photoList } = this.state;
+    var sumOperator = (a, b) => {
+      let sum = a + b;
+      return sum;
+    }
+    var subOperator = (a, b) => {
+      let sub = a - b;
+      return sub;
+    }
+
+    for ( var row = 0; row < max_photos; row++ ) {   
+      var divY = document.getElementById(list[row].key)
+      var rectY = divY.getBoundingClientRect();
+      var topOff = rectY.top;
+      var counter = 0
+      var yUpdater = (counter, func, list) => {
+        this.setState(prevState => {
+          let myListY;
+          list === photoList ?
+            myListY = Object.assign({}, prevState.photoList) :
+            myListY = Object.assign({}, prevState.worksList);
+          for(var i=0; i < max_photos; i++) {
+            if(myListY[i].r === counter) {
+              var a = parseInt(myListY[i].y);
+              var b = max_rows * rowspace;
+              myListY[i].y = func(a, b)
+            }
+          }
+          return { myListY }; 
+        })
+      }
+
+      if (row >= max_cols) {
+        counter = Math.floor(row / max_cols)
+      }
+      if (list[row].r === counter && topOff > n1) {
+        yUpdater(counter, subOperator, list);
+      }
+      else if (list[row].r === counter && topOff <  n2) {
+        yUpdater(counter, sumOperator, list);
+      }
+    }
+
+    for ( var col = 0; col < max_photos; col++ ) {
+      var divX = document.getElementById(list[col].key)
+      var rectX = divX.getBoundingClientRect();
+      var leftOff = rectX.left;
+      var xUpdater = (col, func, list) => {
+        this.setState(prevState => {
+          let myListX;
+          list === photoList ?
+            myListX = Object.assign({}, prevState.photoList) :
+            myListX = Object.assign({}, prevState.worksList);
+          for(var i=0; i < max_photos; i++) {
+            if(myListX[i].c === col) {
+              var a = parseInt(myListX[i].x);
+              var b = max_cols * colspace;
+              myListX[i].x = func(a, b)
+            }
+          }
+          return { myListX }; 
+        })
+      }
+
+      if (list[col].c === col && leftOff < n3) {
+        xUpdater(col, sumOperator, list);
+      }
+      else if (list[col].c === col && leftOff > n4) {
+        xUpdater(col, subOperator, list);
+      }
+    }
+  }
+
 
   onRouteChange = (route) => {
     const initialWorksListState = JSON.parse(JSON.stringify(this.state.initialWorksList));
@@ -40,6 +122,9 @@ class App extends Component {
 
   componentDidMount() {
 
+    this.setState({screenDiff: window.screen.availWidth - window.innerWidth});
+    window.addEventListener("resize", this.updateDimensions);
+
     fetch(`${herokuhost}/homecards`)
     .then(response => response.json())
     .then(photos => {
@@ -47,7 +132,7 @@ class App extends Component {
         photos.forEach((photo, i) => {
           photoPush.push(
             {
-              key: i,
+              key: photo.column_row,
               id: photo.url,
               card_id: photo.card_id,
               url: photo.url,
@@ -100,8 +185,14 @@ class App extends Component {
     .catch(err => console.log('Error: ' + err))
   };
 
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
+
+
   render() {
-    const { worksPhotos, worksList, sfondi, photoList, route } = this.state;
+    const { worksPhotos, worksList, sfondi, photoList, route, screenDiff, screenSizeIsMaj } = this.state;
     
     const elemsToSort = [photoList, worksPhotos, worksList];
     elemsToSort.forEach(elem => {
@@ -121,12 +212,18 @@ class App extends Component {
               <Homepage
               photoList={photoList}
               route={route}
+              screenDiff={screenDiff}
+              screenSizeIsMaj={screenSizeIsMaj}
+              updateThumbs={this.updateThumbs}
               /> :
               <Works
               initialWorksPhotos={this.state.initialWorksPhotos}
               worksPhotos={worksPhotos}
               worksList={worksList}
               route={route}
+              screenDiff={screenDiff}
+              screenSizeIsMaj={screenSizeIsMaj}
+              updateThumbs={this.updateThumbs}
               />
             }
           </div>   
