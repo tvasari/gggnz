@@ -1,1 +1,2 @@
-
+Conceptual website to display Giuseppe Gnozzi's abstract and street art.
+The "Home" and "Works" pages are completley explorable by dragging them and in the "Works" page a click on any image will display a bigger version of it with its specifics. On top of that, for a better user experience, the searchbar allows to display only the desired paintings by filtering them depending on the typed letters and the painting's tags.
