@@ -7,7 +7,4 @@ TO DO:
 -Aggiungere contenuti.
 -Migliorare grafica.
 -Migliorare caricamento dipinti trascinando verso l'alto una volta aggiunti i contenuti.
--Server.
--Account veloce su Heroku.
--Posizionamento centrale scritte homepage e works su mobile.
--Spostamento schermo dopo ricerca su mobile.
+
