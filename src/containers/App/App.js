@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar/Navbar.js';
 import Homepage from '../Homepage/Homepage.js';
 import Works from '../Works/Works.js';
 
-const dreamhost = 'http://gnozziserver.com/'
+const dreamhost = 'https://gnozziserver.com'
 
 const N = Math.floor(Math.random() * 22);
 
@@ -52,11 +52,14 @@ class App extends Component {
             var counter = 0
             var yUpdater = (counter, func, list) => {
                 this.setState(prevState => {
+                    console.log('prevState', prevState)
                     let myListY;
                     list === photoList ?
                         myListY = Object.assign({}, prevState.photoList) :
                         myListY = Object.assign({}, prevState.worksList);
                     for (var i = 0; i < max_photos; i++) {
+                        console.log('myListY', myListY)
+                        console.log(i, myListY[i])
                         if (myListY[i].r === counter) {
                             var a = parseInt(myListY[i].y);
                             var b = max_rows * rowspace;
@@ -126,6 +129,7 @@ class App extends Component {
         fetch(`${dreamhost}/homecards`)
             .then(response => response.json())
             .then(photos => {
+                console.log('photo going to photoPush', photos)
                 const photoPush = [];
                 photos.forEach((photo, i) => {
                     photoPush.push({

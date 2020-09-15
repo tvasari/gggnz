@@ -18,6 +18,7 @@ class Homepage extends Component {
 
   render() {
     const { photoList, route, screenDiff } = this.state;
+    console.log('photoList', photoList)
 
     return (
           <Draggable
